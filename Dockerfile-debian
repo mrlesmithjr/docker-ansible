@@ -4,7 +4,9 @@ LABEL maintainer="mrlesmithjr@gmail.com"
 
 RUN apt-get update && \
   apt-get install -y --no-install-recommends build-essential \
-  python-pip python-setuptools python-dev libffi-dev libssl-dev
-
-RUN python -m pip install --upgrade pip && pip install ansible
-
+  python-pip python-setuptools python-dev libffi-dev libssl-dev && \
+  python -m pip install --upgrade pip && \
+  pip install ansible && \
+  apt-get remove -y build-essential python-dev libffi-dev libssl-dev && \
+  apt-get autoremove -y && \
+  rm -rf /var/lib/apt/lists/*

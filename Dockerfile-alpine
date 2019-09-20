@@ -3,6 +3,9 @@ FROM alpine
 LABEL maintainer="mrlesmithjr@gmail.com"
 
 RUN apk update && \
-  apk add --no-cache --virtual build-dependencies bash python-dev libffi-dev \
-  openssl-dev build-base py-pip && pip install -U cffi && pip install ansible
-
+  apk add --no-cache bash py-pip && \
+  apk add --no-cache --virtual build-dependencies python-dev libffi-dev \
+  openssl-dev build-base && \
+  pip install -U cffi && \
+  pip install ansible && \
+  apk del build-dependencies
