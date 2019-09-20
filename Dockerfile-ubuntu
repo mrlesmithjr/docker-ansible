@@ -1,0 +1,10 @@
+FROM ubuntu
+
+LABEL maintainer="mrlesmithjr@gmail.com"
+
+RUN apt-get update && \
+  apt-get install -y --no-install-recommends build-essential \
+  python-pip python-setuptools python-dev libffi-dev libssl-dev
+
+RUN python -m pip install --upgrade pip && pip install ansible
+
