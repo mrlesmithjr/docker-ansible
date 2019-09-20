@@ -4,9 +4,11 @@ LABEL maintainer="mrlesmithjr@gmail.com"
 
 RUN apt-get update && \
   apt-get install -y --no-install-recommends build-essential \
-  python-pip python-setuptools python-dev libffi-dev libssl-dev && \
-  python -m pip install --upgrade pip && \
-  pip install ansible && \
-  apt-get remove -y build-essential python-dev libffi-dev libssl-dev && \
+  python3-pip python3-setuptools python3-dev libffi-dev libssl-dev sshpass && \
+  python3 -m pip install --upgrade pip && \
+  pip3 install ansible && \
+  if [ ! -e /usr/bin/pip ]; then ln -sf /usr/bin/pip3 /usr/bin/pip; fi && \
+  if [ ! -e /usr/bin/python ]; then ln -sf /usr/bin/python3 /usr/bin/python; fi && \
+  apt-get remove -y build-essential python3-dev libffi-dev libssl-dev && \
   apt-get autoremove -y && \
   rm -rf /var/lib/apt/lists/*
