@@ -3,7 +3,7 @@ FROM alpine
 LABEL maintainer="mrlesmithjr@gmail.com"
 
 RUN apk update && \
-  apk add --no-cache bash python3 py3-pip sshpass && \
+  apk add --no-cache bash openssh-client python3 py3-pip sshpass && \
   apk add --no-cache --virtual build-dependencies python3-dev libffi-dev \
   openssl-dev build-base && \
   pip3 install --upgrade pip &&\
